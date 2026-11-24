@@ -8,21 +8,6 @@ Production-grade refresh token implementation for Go services, using Redis and L
 
 Companion code for the Medium series: [Managing Sessions in Go with Redis and Lua](https://medium.com/@dositadi/managing-sessions-in-go-with-redis-and-lua-44684e7e6188).
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Key Design Decisions](#key-design-decisions)
-- [The Series](#the-series)
-- [License](#license)
-
 ## Overview
 
 Most session bugs aren't in the login handler. They're in the quiet parts: the token that lives for 30 days, the logout button that doesn't really log anyone out, the stolen token that keeps working because nothing on the server remembers it exists.
@@ -41,5 +26,3 @@ This project solves those problems by trading the convenience of self-contained 
 - **Grace window for replays** — a short leeway (default 10s) after rotation lets a lost response be retried without triggering theft detection
 - **Fail closed** — Redis outages surface as `ErrTransient`, never as "session not found"
 - **Zero mutable state** — the `Manager` is built once at startup and shared across all requests
-
-## Architecture
